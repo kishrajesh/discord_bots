@@ -10,6 +10,7 @@ class_data = json.load(f)
 f.close()
 
 name = class_data['name']
+size = class_data['size']
 
 # Create an instance of Intents
 intents = discord.Intents.default()
@@ -35,7 +36,7 @@ async def check_api():
     seatFill = class_sections['seatsFilled']
     CHANNEL_ID = class_data['keys']['channel_id']
     channel = bot.get_channel(CHANNEL_ID)
-    if(seatFill < 25):
+    if(seatFill < size):
         message = "@everyone" + name+ ' is open!'
         if channel:
             await channel.send(message)
